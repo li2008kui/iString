@@ -7,17 +7,16 @@ namespace iString
         static void Main(string[] args)
         {
             var c = new Chain();
-            var b1 = new Block(null);
-            var b2 = new Block(null);
-            c.AddBlock(b1);
-            c.AddBlock(b2);
+            Console.WriteLine(c.Blocks[0] + "\r\n");
 
-            foreach (var b in c.Blocks)
+            while (true)
             {
+                var p = c.GetLatestBlock().GetBlockHeaderHash();
+                var b = Pow.Mining(p);
+
+                c.AddBlock(b);
                 Console.WriteLine(b + "\r\n");
             }
-
-            Console.ReadKey();
         }
     }
 }
